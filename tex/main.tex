@@ -1,0 +1,125 @@
+%%%% Template for Japanese %%%%
+%%%% 古いコマンド等の警告 %%%%
+\RequirePackage[l2tabu, orthodox]{nag}
+%%%% 基本的な設定 %%%%
+\documentclass[a4paper]{bxjsarticle}
+\usepackage{zxjatype}
+%%%% フォントの設定 %%%%
+\usepackage{fontspec}
+%%%% 欧文フォントの設定 %%%%
+% TeX Gyre Termes
+\setromanfont[
+Scale=MatchLowercase,
+Ligatures=TeX,
+BoldFont=texgyretermes-bold.otf,
+ItalicFont=texgyretermes-italic.otf,
+BoldItalicFont=texgyretermes-bolditalic.otf
+]{texgyretermes-regular.otf}
+% TeX Gyre Heros
+\setsansfont[
+Scale=MatchLowercase,
+Ligatures=TeX,
+BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf
+]{texgyreheros-regular.otf}
+% TeX Gyre Cursor
+\setmonofont[
+Scale=0.90,
+Scale=MatchLowercase,
+Ligatures=TeX,
+BoldFont=texgyrecursor-bold.otf,
+ItalicFont=texgyrecursor-italic.otf,
+BoldItalicFont=texgyrecursor-bolditalic.otf
+]{texgyrecursor-regular.otf}
+%%%% 和文フォントの設定 %%%%
+\setCJKmainfont{ipam.ttf}
+\setjasansfont{ipag.ttf}
+\setjamonofont{ipag.ttf}
+%%%% 数式フォントの設定 %%%%
+\usepackage{newtxmath}
+%%%% 高品質なフォントらしいけど、Vが気に入らないのでお好みで %%%%
+% \usepackage[libertine]{newtxmath}
+%%%% 各種数式コマンド用 %%%%
+% \usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage[all, warning]{onlyamsmath}
+%%%% ラプラス・フーリエ変換の数式花文字用 %%%%
+\usepackage{mathrsfs}
+%%%% マクロ用 %%%%
+\usepackage{xargs}[2008/03/08]
+%%%% 余白の設定 %%%%
+%%%% ページ横向き %%%%
+% \usepackage[dvipdfm,landscape]{geometry}
+%%%% ページ縦向き %%%%
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.8cm,bmargin=1.8cm,lmargin=2.5cm,rmargin=2.5cm}
+%%%% 図の取り込み用 %%%%
+\usepackage{graphicx}
+%%%% Tikz用 %%%%
+\usepackage{tikz}
+%%%% 各種コマンドの定義・再定義の開始 %%%%
+\makeatletter
+%%%% 式、図、表の番号を"節.No."に変更 %%%%
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+%%%% 図、表の接頭辞を"Fig.", "Table"に変更 %%%%
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
+%%%% my_refの定義 開始 %%%%
+\usepackage{xparse}
+\NewDocumentCommand\figref{m o}{
+	\IfValueTF{#2}{Figs.~\ref{#1} -- \ref{#2}}{\figurename{}~\ref{#1}}
+}
+\NewDocumentCommand\tabref{m o}{
+	\IfValueTF{#2}{\tablename{}s~\ref{#1} -- \ref{#2}}{\tablename{}~\ref{#1}}
+}
+%%%% my_refの定義 終了 %%%%
+%%%% しおり、リンク作成用 %%%%
+%%%% タイトル、著者、主題、キーワードを編集 %%%%
+\usepackage{ifpdf}
+\usepackage{ifluatex}
+\usepackage{ifxetex}
+\ifpdf
+  \ifluatex
+    \usepackage[pdfencoding=auto]{hyperref}
+  \else
+    \usepackage[whole,autotilde]{bxcjkjatype}
+    \usepackage[unicode]{hyperref}
+  \fi
+\else
+  \ifxetex
+    \usepackage{hyperref}
+    \usepackage{zxjatype}
+    \setjamainfont{ipaexm.ttf}
+    \setjasansfont{ipaexg.ttf}
+    \setjamonofont{ipaexg.ttf}
+  \else
+    \usepackage[dvipdfmx]{hyperref}
+    \usepackage{pxjahyper}
+  \fi
+\fi
+\hypersetup{%
+ bookmarksnumbered=true,%
+ colorlinks=false,%
+ setpagesize=false,%
+ pdftitle={Title},%
+ pdfauthor={ykn},%
+ pdfsubject={Subject},%
+ pdfkeywords={Keyword1; Keyword2;}}
+%
+%%%% 数式環境中の改行を許可 %%%%
+\allowdisplaybreaks
+%
+\makeatother
+%%%% 各種コマンドの定義・再定義の終了 %%%%
+%%%% 本文開始 %%%%
+\begin{document}
+%%%% 内容ここから %%%%
+\noindent {\LARGE タイトル}
+
+\section{日本語も大丈夫!!}
+
+%%%% 本文終了 %%%%
+\end{document}
